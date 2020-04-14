@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "6PPTYqcx2bL6aETGtGKlFZuqcGCym+0yvocU/wv8YEqs+WF1b4ozEJ09V7bWVfZHOgpajKku+8sScGaP886pyw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Mark.000\\Source\\Repos\\SocialMediaHelper\\SocialMediaHelper\\SocialMediaHelper.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Mark.000\\.nuget\\packages\\microsoft.aspnetcore.blazor.httpclient\\3.2.0-preview3.20168.3\\microsoft.aspnetcore.blazor.httpclient.3.2.0-preview3.20168.3.nupkg.sha512",
+    "C:\\Users\\Mark.000\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Mark.000\\.nuget\\packages\\system.text.json\\4.7.1\\system.text.json.4.7.1.nupkg.sha512"
+  ],
+  "logs": []
+}

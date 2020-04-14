@@ -1,0 +1,71 @@
+﻿@page "/"
+@using SocialMediaHelper.Data;
+@inject HttpClient http;
+
+<h1>Social Media Helper</h1>
+
+@code{
+    Video videos = new Video();
+}
+
+<button class="btn btn-success" @onclick="@GetVideos">Get Video List</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th><button class="btn btn-outline-dark" @onclick="@ToggleCheckAll">All</button></th>
+            <th>VideoId</th>
+            <th>Title</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (videos.Items != null)
+        {
+            @foreach (var video in videos.Items)
+            {
+                <tr>
+                    <td><input id="@video.Id.VideoId" type="checkbox" @onchange="@(e => ToggleChecked(video.Id.VideoId))" checked="@video.Checked"/></td>
+                    <td>@video.Id.VideoId</td>
+                    <td><a href="https://www.youtube.com/watch?v=@video.Id.VideoId" target="_blank">@video.Snippet.Title</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+    YouTubeInputs inputs = GetInputs();
+
+    private async Task GetVideos()
+    {
+        videos = await http.GetJsonAsync<Video>($"{inputs.baseUrl}/search?part={inputs.part}&maxResults={inputs.maxResults}&q={inputs.q}&order={inputs.order}&key={inputs.key}");
+    }
+
+
+    private static YouTubeInputs GetInputs()
+    {
+        var inputs = new YouTubeInputs();
+        inputs.baseUrl = "https://www.googleapis.com/youtube/v3";
+        inputs.key = "AIzaSyC1UE_F0J-cm7psvBeM6rahKqO2_FVTVUc";
+        inputs.maxResults = 50;
+        inputs.order = "relevance";
+        inputs.part = "snippet";
+        inputs.q = "forex trading";
+
+        return inputs;
+    }
+
+    private void ToggleChecked(string videoId)
+    {
+        var video = videos.Items.Where(v => v.Id.VideoId == videoId).FirstOrDefault();
+        video.Checked = !video.Checked;
+    }
+
+    private void ToggleCheckAll()
+    {
+        foreach (var video in videos.Items)
+        {
+            video.Checked = !video.Checked;
+        }
+    }
+}
